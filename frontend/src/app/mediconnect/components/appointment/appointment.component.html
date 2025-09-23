@@ -1,0 +1,25 @@
+
+
+<div class="appointment-form">
+  <h2>Book Appointment</h2>
+  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+    <label>Clinic:</label>
+    <select formControlName="clinic">
+      <option *ngFor="let clinic of clinics" [ngValue]="clinic">{{ clinic.clinicName }}</option>
+    </select>
+
+    <label>Date:</label>
+    <input type="date" formControlName="appointmentDate" />
+
+    <label>Status:</label>
+    <input type="text" formControlName="status" />
+
+    <label>Purpose:</label>
+    <input type="text" formControlName="purpose" />
+
+    <button type="submit">Book</button>
+  </form>
+
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

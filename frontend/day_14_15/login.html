@@ -8,3 +8,23 @@
     -loginPassword: should not be empty
 
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <script src="./js/validation.js"></script>
+</head>
+<body>
+  <h1>Login Form</h1>
+  <form onsubmit="event.preventDefault(); login();">
+    <label for="loginUsername">Username</label>
+    <input type="text" id="loginUsername">
+    <br>
+    <label for="loginPassword">Password</label>
+    <input type="password" id="loginPassword">
+    <br>
+    <button type="submit">Login</button>
+  </form>
+</body>
+</html>

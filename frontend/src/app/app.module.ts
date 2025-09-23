@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';  
+import { MediConnectModule } from './mediconnect/mediconnect.module';
+import { PatientSampleComponent } from './mediconnect/components/patientsample/patientsample.component';
+import { DoctorSampleComponent } from './mediconnect/components/doctorsample/doctorsample.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth.interceptors';
+
 
 @NgModule({
   declarations: [
@@ -11,9 +19,22 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule 
+    AppRoutingModule,
+    // PatientSampleComponent,   // ✅ standalone component goes in imports
+    // DoctorSampleComponent,
+    // MediConnectModule,
+    // ReactiveFormsModule,
+    FormsModule,
+    AuthModule 
+    
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
